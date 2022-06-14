@@ -1,0 +1,18 @@
+rule augur_filter:
+    input:
+        sequences_fasta="sequences.fasta",
+        metadata_tsv="metadata.tsv",
+        exclude_txt="exclude.txt",
+    output:
+        filtered_fasta="filtered.fasta",
+    params:
+        filter_params=" ",
+    shell:
+        """
+        augur filter \
+          --sequences {input.sequences_fasta} \
+          --metadata {input.metadata_tsv} \
+          --exclude {input.exclude_txt} \
+          --output {output.filtered_fasta} \
+          {params.filter_params} 
+        """
